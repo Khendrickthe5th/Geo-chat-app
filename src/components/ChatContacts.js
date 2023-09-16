@@ -2,7 +2,7 @@ import "./ChatContacts.css"
 import { MagnifyingGlass } from "@phosphor-icons/react"
 import React, { useState, useEffect, useRef } from "react"
 import socketIO from "socket.io-client"
-const socket = socketIO.connect("https://chat-app-test-pwrp.onrender.com")
+const socket = socketIO.connect("https://geo-chat-app.onrender.com")
 // const socket = socketIO.connect("http://localhost:3100")
 
 
