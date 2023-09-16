@@ -1,0 +1,268 @@
+.chatCont{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: relative;
+}
+.chatInfoPanel{
+    width: 100%;
+    height: 90px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.582 ) inset;
+}
+
+
+.chatCanvas{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(128, 128, 128, 0.507);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.507);
+    overflow-y: auto;
+}
+
+.chatPartnerInfo{
+    display: flex;
+    /* flex-direction: column;
+    align-items: flex-start; */
+}
+
+.chatPartnerInfo > div:nth-of-type(1){
+    font-size: 1.4rem;
+    font-weight: 700;
+    user-select: none;
+}
+
+.chatPartnerInfo > div:nth-of-type(2){
+    margin-left: 5px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    user-select: none;
+}
+
+.chatPartnerInfo > div:nth-of-type(2) > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.chatPartnerActive{
+    text-align: start;
+}
+
+.chatPartnerActive > span:nth-of-type(1){
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: rgb(4, 201, 4);
+    border-radius: 50%;
+}
+.chatPartnerActive > span:nth-of-type(2){
+    font-size: 0.9rem;
+    margin-left: 5px;
+    display: inline-block;
+    user-select: none;
+}
+
+.chatPanelIconsCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+.chatPanelVideoIcon, .chatPanelPhoneIcon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #E1EBEE;
+    display: grid;
+    place-items: center;
+}
+.chatActionsPanel{
+    width: 100%;
+    height: 90px;
+    flex-shrink: 0;
+    padding: 0px;
+    background-color: #fff;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatActionsPanel > div:nth-of-type(1){
+    display: flex;
+    height: fit-content;
+    width: 450px;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.chatActionsPanel > div:nth-of-type(1) > span:nth-of-type(1){
+    padding: 8px;
+    background-color: #e1ebeec0;
+    display: grid;
+    border-radius: 50%;
+    place-items: center;
+    cursor: pointer;
+}
+.chatActionsPanel > div:nth-of-type(1) >  input{
+    height: 40px;
+    width: 100%;
+    margin-left: 10px;
+    outline: none;
+    border: 0px solid black;
+    font-size: 1rem;
+}
+.chatActionsPanel > div:nth-of-type(1) >  input::placeholder{
+    font-size: 1rem;
+}
+
+.chatActionsPanel > div:nth-of-type(2){
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+.chatActionsPanel > div:nth-of-type(2) > span:nth-of-type(1){
+    padding: 8px;
+    background-color: #e1ebeec0;
+    display: grid;
+    border-radius: 50%;
+    place-items: center;
+    cursor: pointer;
+}
+.chatActionsPanel > div:nth-of-type(2) > span:nth-of-type(2){
+    padding: 12px;
+    background-color: #FF0800;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.247);
+    cursor: pointer;
+}
+
+.chatActionsPanel > div:nth-of-type(1) > span:nth-of-type(1):active, .chatActionsPanel > div:nth-of-type(2) > span:nth-of-type(2):active, .chatActionsPanel > div:nth-of-type(2) > span:nth-of-type(1):active, .chatPanelPhoneIcon:active, .chatPanelVideoIcon:active{
+    transform: scale(1.1)
+}
+
+/* .chatCanvas > div{
+    width: auto;
+    height: fit-content;
+    margin: 12px;
+    box-sizing: border-box;
+} */
+.chatCanvas > .chat-appsender{
+    width: fit-content;
+    max-width: 55%;
+    height: fit-content;
+    padding: 8px 18px 6px 18px;
+    margin: 12px;
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: white;
+    background-color:#ff3831;
+    box-shadow: -2px 1px 16px 0px #9f9f9f93;
+    text-align: start;
+}
+.chatCanvas > .chat-appreceiver{
+    width: fit-content;
+    max-width: 55%;
+    height: fit-content;
+    padding: 8px 18px 6px 18px;
+    margin: 12px;
+    margin-right: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background-color:#E1EBEE;
+    box-shadow: 2px 1px 16px 0px #9f9f9f28;
+    text-align: start;
+}
+
+/* .chatCanvas > div:nth-of-type(odd) >p:nth-of-type(1){
+    margin-right: calc(0.7rem*3);
+}
+.chatCanvas > div:nth-of-type(even) >p:nth-of-type(1){
+    margin-left: calc(0.7rem*3)
+} */
+.chatCanvas > div > p{
+    margin: 0px;
+    padding: 0px;
+}
+.chatCanvas > .chat-appsender >p:nth-of-type(2){
+    font-size: 0.7rem;
+    margin-top: 4px;
+    text-align: end;
+    color: rgb(240, 239, 239);
+}
+
+.chatCanvas > .chat-appreceiver > p:nth-of-type(2){
+    font-size: 0.7rem;
+    margin-top: 4px;
+    text-align: end;
+    color: grey;
+}
+
+/* --------------------------------Loader Animation Top-------------------------------------- */
+	.loaderXYZabc {
+        width: auto;
+        height: auto;
+		text-align: start;
+        margin: 20px;
+        margin-top: auto;
+	}
+
+	.loaderXYZabc span {
+		display: inline-block;
+		vertical-align: middle;
+		width: 15px;
+		height: 15px;
+		background: black;
+		border-radius: 15px;
+		animation: loader 1000ms infinite alternate;
+	}
+
+	.loaderXYZabc span:nth-of-type(2) {
+		animation-delay: 0.2s;
+	}
+
+	.loaderXYZabc span:nth-of-type(3) {
+		animation-delay: 0.6s;
+	}
+
+	@keyframes loader {
+		0% {
+			opacity: 0.9;
+			transform: scale(0.5);
+		}
+
+		100% {
+			opacity: 0.1;
+			transform: scale(1);
+		}
+	}
+/* -------------------------------------Loader Animation End----------------------------------- */

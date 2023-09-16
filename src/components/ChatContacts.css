@@ -1,0 +1,108 @@
+.ChatContactsCont{
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+}
+.chat{
+    width: 350px;
+    height: calc(100% - 90px);
+    background-color: #E1EBEE;
+    overflow: auto;
+}
+.searchBoxCont{
+    height: 90px;
+    width: 100%;
+    background-color: #cce3eb;
+    display: grid;
+    place-items: center;
+}
+.searchBoxCont > span{
+    width: 300px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.589);
+}
+
+.searchBoxCont > span > input{
+    outline: none;
+    border: none;
+    margin-left: 5px;
+    width: 250px;
+}
+.convoHeaderCont{
+    padding: 0px 15px 0px 15px;
+}
+.convoHeaderCont:hover{
+    background-color: #f2fdff;
+}
+.convoHeader{
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.329);
+    cursor: pointer;
+}
+.dpImgCont > p{
+    width: 45px;
+    height: 45px;
+    background-color:rgba(128, 128, 128, 0.589);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.dpImgCont{
+    margin: 8px 0px 8px 0px;
+    margin-right: 10px
+}
+.lastConvoDetail{
+    width: calc(100% - 70px);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+.usrnameAndTime{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.usrnameAndTime > span:nth-of-type(1){
+    margin-right: auto;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+.usrnameAndTime > span:nth-of-type(2){
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+    font-size: 0.7rem;
+    color: grey;
+}
+.textPeek{
+    min-width: 10px;
+    height: fit-content;
+}
+.textPeek > p{
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}

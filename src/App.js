@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from "./pages/Main"
+import Modal from "./pages/Modal"
+import React, {useState} from "react"
+import {Routes, Route, BrowserRouter as Router} from "react-router-dom"
+
 
 function App() {
+  // const [ChatContactsVisible, setChatContactsVisible] = useState(true)
+  const [username, setUsername] = useState(null)
+
+  // const toggleChatContactsVisible = ()=>{
+  //   setChatContactsVisible(!ChatContactsVisible)
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <section className="App">
+    {/* <Modal setUsername={setUsername}/> */}
+      <Routes>
+      <Route path="/" element={<Modal setUsername={setUsername}/>} />
+      <Route path="main" element={<Main username={username} />} />
+      </Routes>
+    </section>
+    </Router>
   );
 }
 
