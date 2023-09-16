@@ -18,10 +18,21 @@ const usernameVal = useRef()
     return(
     <div className="modalCont"> 
         <div className="modal">
-             <span>Heyyy</span>
-            <input ref={usernameVal} type="text" name="username" id="" />
-            <button onClick={pushUsername}>Submit</button>
-            <Link to="/main"><button> Remove </button></Link>
+            <div className="loginSec">
+            <span>Type in your <br />Favourite Nickname</span>
+            <div>  
+            <p>Username</p>
+            <input ref={usernameVal} type="text" name="username" placeholder="Your Nickname here..."/>
+            </div>
+            <Link to="/main"><div className="butLogin" onClick={pushUsername}>Login</div></Link>
+            </div>
+            <div className="displaySec">
+                <div className="displaySecInnerCont">
+                <h1>Join the<br />
+                Conversation</h1>
+                <h6>Meet random people from around the Globe</h6>
+                </div>
+            </div>
         </div>
     </div>
     )
