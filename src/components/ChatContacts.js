@@ -2,15 +2,14 @@ import "./ChatContacts.css"
 import { MagnifyingGlass } from "@phosphor-icons/react"
 import React, { useState, useEffect, useRef } from "react"
 import socketIO from "socket.io-client"
-const socket = socketIO.connect("https://geo-chat-app-be.onrender.com")
-// const socket = socketIO.connect("http://localhost:3100")
+// const socket = socketIO.connect("https://geo-chat-app-be.onrender.com")
+const socket = socketIO.connect("http://localhost:3100")
 
 
 function ChatContacts(props){
     const [onlineUsers, setOnlineUsers] = useState()
     const allConvo = useRef()
     const chatHeadName = useRef()
-
 
     useEffect(()=>{
         console.log("online users redndered")
@@ -23,6 +22,7 @@ function ChatContacts(props){
     const addClickEvent = (e)=>{
         socket.emit("join", {"roomId": e.target.innerText})
             props.setCurrentChatRecvr(e.target.getAttribute("data-onlineFrnd"))
+            props.setInitiateChat(true)
             // console.log(e.target.getAttribute("data-onlineFrnd"))
     }
 

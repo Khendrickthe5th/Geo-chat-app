@@ -111,7 +111,7 @@
 .chatActionsPanel > div:nth-of-type(1){
     display: flex;
     height: fit-content;
-    width: 450px;
+    width: auto;
     align-items: center;
     background-color: #fff;
     border-radius: 20px;
@@ -130,7 +130,7 @@
 }
 .chatActionsPanel > div:nth-of-type(1) >  input{
     height: 40px;
-    width: 100%;
+    width: 350px;
     margin-left: 10px;
     outline: none;
     border: 0px solid black;
@@ -266,3 +266,25 @@
 		}
 	}
 /* -------------------------------------Loader Animation End----------------------------------- */
+
+@media screen and (max-width: 920px){
+    .chatActionsPanel > div:nth-of-type(1) >  input{
+        height: 40px;
+        width: 300px;
+        margin-left: 10px;
+        outline: none;
+        border: 0px solid black;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .chatActionsPanel > div:nth-of-type(1) >  input{
+        height: 40px;
+        width: 200px;
+        margin-left: 10px;
+        outline: none;
+        border: 0px solid black;
+        font-size: 1rem;
+    }
+}

@@ -1,6 +1,8 @@
 import "./Modal.css"
 import React, {useEffect, useRef} from 'react'
 import {Link} from "react-router-dom"
+import socketIO from 'socket.io-client'
+const socket = socketIO.connect("http://localhost:3100")
 
 
 function Modal({setUsername}){
@@ -12,6 +14,7 @@ const usernameVal = useRef()
 
     const pushUsername =()=>{
         setUsername(usernameVal.current.value)
+        socket.emit("userList", usernameVal.current.value)
     }
 
 

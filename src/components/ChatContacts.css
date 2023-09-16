@@ -106,3 +106,20 @@
     white-space: nowrap;
     font-size: 0.9rem;
 }
+
+@media screen and (max-width: 1071px){
+    .chat{
+        width: 250px;
+    }
+
+    .searchBoxCont > span{
+        width: 200px;
+        height: 27px;
+    }
+    .searchBoxCont > span > input{
+        outline: none;
+        border: none;
+        margin-left: 5px;
+        width: 160px;
+    }
+}

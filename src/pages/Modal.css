@@ -127,7 +127,13 @@ button {
 }
 }
 
-@media screen and (max-width: 300px){
+@media screen and (max-width: 350px){
+    .modal {
+        width: 100vw;
+        height: 100%;
+        display: flex;
+      }
+
     .loginSec > div > input[type=text]{
         width: 200px;
         height: 30px;
