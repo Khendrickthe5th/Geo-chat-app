@@ -2,6 +2,7 @@ import "./Modal.css"
 import React, {useEffect, useRef} from 'react'
 import {Link} from "react-router-dom"
 import socketIO from 'socket.io-client'
+// const socket = socketIO.connect("https://geo-chat-app-be.onrender.com")
 const socket = socketIO.connect("http://localhost:3100")
 
 

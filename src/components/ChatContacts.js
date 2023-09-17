@@ -7,26 +7,13 @@ const socket = socketIO.connect("http://localhost:3100")
 
 
 function ChatContacts(props){
-    // const [onlineUsers, setOnlineUsers] = useState()
     const allConvo = useRef()
     const chatHeadName = useRef()
-    // socket.emit("userList", props.username)
-
-
-    // useEffect(()=>{
-    //     console.log("online users redndered")
-    // //     socket.on("userListRen", (userList)=>{
-    // //     props.setOnlineUsers(userList)
-    // //     console.log("received event from server")
-    // // })
-    // },[ props.onlineUsers])
-    
 
     const addClickEvent = (e)=>{
         socket.emit("join", {"roomId": e.target.innerText})
             props.setCurrentChatRecvr(e.target.getAttribute("data-onlineFrnd"))
             props.setInitiateChat(true)
-            // console.log(e.target.getAttribute("data-onlineFrnd"))
     }
 
     return(

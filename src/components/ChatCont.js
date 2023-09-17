@@ -5,7 +5,6 @@ import "./ChatCont.css";
 import EmojiPad from "./EmojiPad"
 // const socket = socketIO.connect('https://geo-chat-app-be.onrender.com')
 const socket = socketIO.connect("http://localhost:3100")
-// const socket = socketIO.connect("http://localhost:3100")
 
 
 function ChatCont(props) {
@@ -27,9 +26,9 @@ const [messages, setMessages] = useState([])
 //   });
 let roomId = props.username
 let isRoomCreated = false;
-// socket.emit("userList", props.username)
 
   useEffect(()=>{
+    console.log(messages)
     if(!isRoomCreated){
       socket.emit("createRoom", roomId)
       isRoomCreated = true;
@@ -39,7 +38,7 @@ let isRoomCreated = false;
   }, [messages, roomId])
   socket.on("privateMessage", ({message})=>{
     setMessages([...messages, message])
-    // console.log(messages)
+
 })
 
 const setTyping = function(){
