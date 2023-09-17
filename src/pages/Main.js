@@ -2,19 +2,21 @@ import NavBar from "../components/NavBar"
 import ChatCont from "../components/ChatCont"
 import ChatContacts from "../components/ChatContacts"
 import React, { useState } from 'react'
+import socketIO from 'socket.io-client'
+const socket = socketIO.connect("http://localhost:3100")
 
 function Main(props) {
-const [ChatContactsVisible, setChatContactsVisible] = useState(false)
+const [ChatContactsVisible, setChatContactsVisible] = useState(true)
 const [initiateChat, setInitiateChat] = useState(false)
 const [currentChatRecvr, setCurrentChatRecvr] = useState()
+const [onlineUsers, setOnlineUsers] = useState()
 // const chatValue = useRef()
 // const [username, setUsername] = useState(null)
 
-// useEffect(()=>{
-//   socket.on('message', (data)=>{
-//     setChat([...chat, data])
-//   })
-// })
+socket.on("userListRen", (userList)=>{
+  console.log("received event from ChatCont to render users")
+      setOnlineUsers(userList)
+})
 
 const toggleChatContactsVisible = ()=>{
   setChatContactsVisible(!ChatContactsVisible)
@@ -35,8 +37,8 @@ const toggleChatContactsVisible = ()=>{
       {/* Modal component for the initial prompt upon accesing the webpage, saving user location, username, and other details needed */}
       {/* <Modal setUsername={setUsername}/> */}
 
-      <NavBar toggleChatContactsVisible={toggleChatContactsVisible}/>
-      { ChatContactsVisible && <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} />}
+      <NavBar toggleChatContactsVisible={toggleChatContactsVisible} />
+      { ChatContactsVisible && <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} />}
       {initiateChat && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} />} 
 
 {/*       

@@ -27,7 +27,7 @@ const [messages, setMessages] = useState([])
 //   });
 let roomId = props.username
 let isRoomCreated = false;
-socket.emit("userList", props.username)
+// socket.emit("userList", props.username)
 
   useEffect(()=>{
     if(!isRoomCreated){

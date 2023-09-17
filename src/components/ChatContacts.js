@@ -7,17 +7,20 @@ const socket = socketIO.connect("http://localhost:3100")
 
 
 function ChatContacts(props){
-    const [onlineUsers, setOnlineUsers] = useState()
+    // const [onlineUsers, setOnlineUsers] = useState()
     const allConvo = useRef()
     const chatHeadName = useRef()
+    // socket.emit("userList", props.username)
 
-    useEffect(()=>{
-        console.log("online users redndered")
-        socket.on("userListRen", (userList)=>{
-        setOnlineUsers(userList)
-        console.log("received event from server")
-    })
-    },[ onlineUsers])
+
+    // useEffect(()=>{
+    //     console.log("online users redndered")
+    // //     socket.on("userListRen", (userList)=>{
+    // //     props.setOnlineUsers(userList)
+    // //     console.log("received event from server")
+    // // })
+    // },[ props.onlineUsers])
+    
 
     const addClickEvent = (e)=>{
         socket.emit("join", {"roomId": e.target.innerText})
@@ -36,13 +39,13 @@ function ChatContacts(props){
                 </div>
 
             <div className="chat" ref={allConvo}>
-            {onlineUsers && Object.entries(onlineUsers).map((item, index)=>{
+            {props.onlineUsers && Object.entries(props.onlineUsers).map((item, index)=>{
                 return( item[0] !== props.username ? <div key={index} className="convoHeaderCont" onClick={addClickEvent}>
             <div className="convoHeader">
                 <div className="dpImgCont">
                     <p></p>
                 </div>
-                {/* {console.log("rendered users", item[0], "username", props.username)} */}
+
                 <div className="lastConvoDetail" data-onlinefrnd={item[0]}>
                     <div className="usrnameAndTime" data-onlinefrnd={item[0]}>
                         <span ref={chatHeadName} data-onlinefrnd={item[0]}>{item[0]}</span>
