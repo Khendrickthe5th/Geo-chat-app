@@ -41,9 +41,10 @@ const toggleChatContactsVisible = ()=>{
        : <></> }
 
        {clientWidth <= 750 ? 
-       (<>
+       (<div className="MobileView">
        <Header />
-       </>) : <></>}
+       <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} />
+       </div>) : <></>}
        
     </section>
   );
