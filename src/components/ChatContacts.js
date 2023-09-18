@@ -9,11 +9,25 @@ const socket = socketIO.connect("http://localhost:3100")
 function ChatContacts(props){
     const allConvo = useRef()
     const chatHeadName = useRef()
+    const [clientWidth, setClientWidth] = useState(window.innerWidth)
+
+    useEffect(()=>{
+    window.onresize = ()=>{
+        setClientWidth(window.innerWidth)
+    }
+    })
+
+
 
     const addClickEvent = (e)=>{
         socket.emit("join", {"roomId": e.target.innerText})
             props.setCurrentChatRecvr(e.target.getAttribute("data-onlineFrnd"))
             props.setInitiateChat(true)
+
+            if(clientWidth <= 750){
+                props.setHeaderAndChatContactsVisibility(false)
+                props.setChatContVisible(!props.chatContVisible)
+            }
     }
 
     return(

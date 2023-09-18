@@ -12,6 +12,8 @@ const [initiateChat, setInitiateChat] = useState(false)
 const [currentChatRecvr, setCurrentChatRecvr] = useState()
 const [onlineUsers, setOnlineUsers] = useState()
 const [clientWidth, setClientWidth] = useState(window.innerWidth)
+const [HeaderAndChatContactsVisibility, setHeaderAndChatContactsVisibility] = useState(true)
+const [chatContVisible, setChatContVisible] = useState(false)
 
 useEffect(()=>{
   window.onresize = ()=>{
@@ -36,14 +38,15 @@ const toggleChatContactsVisible = ()=>{
       (<>
       <NavBar toggleChatContactsVisible={toggleChatContactsVisible} />
       { ChatContactsVisible && <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} />}
-      {initiateChat && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} />}
+      {initiateChat && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} clientWidth={clientWidth} />}
       </>)
        : <></> }
 
        {clientWidth <= 750 ? 
        (<div className="MobileView">
-       <Header />
-       <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} />
+       {HeaderAndChatContactsVisibility && <Header />}
+       {HeaderAndChatContactsVisibility && <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setHeaderAndChatContactsVisibility={setHeaderAndChatContactsVisibility} chatContVisible={chatContVisible} setChatContVisible={setChatContVisible} />}
+       {chatContVisible && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} clientWidth={clientWidth} setHeaderAndChatContactsVisibility={setHeaderAndChatContactsVisibility} setChatContVisible={setChatContVisible} />}
        </div>) : <></>}
        
     </section>

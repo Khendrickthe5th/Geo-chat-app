@@ -1,4 +1,5 @@
 import "./Header.css"
+import ChatCont from "../ChatCont"
 import { useRef } from "react"
 import { DotsThreeVertical, MagnifyingGlass, CaretRight} from "@phosphor-icons/react"
 import { Link } from "react-router-dom"

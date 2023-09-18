@@ -135,6 +135,7 @@
         padding: 0px;
         font-size: 0.9rem;
     }
+
 }
 @media screen and (max-width: 500px){
     .textPeek > p {

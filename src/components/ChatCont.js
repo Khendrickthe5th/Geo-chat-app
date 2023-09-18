@@ -1,4 +1,4 @@
-import { Phone, VideoCamera, MapPin, Smiley, Paperclip, PaperPlaneTilt } from "@phosphor-icons/react";
+import { Phone, VideoCamera, MapPin, Smiley, Paperclip, PaperPlaneTilt, DotsThreeVertical, CaretLeft, ArrowBendUpLeft } from "@phosphor-icons/react";
 import React, { useEffect, useState, useRef } from "react";
 import socketIO from 'socket.io-client'
 import "./ChatCont.css";
@@ -14,6 +14,7 @@ const chatRecipient = useRef()
 const [EmojiPadVisible, setEmojiPadVisible] = useState(false)
 const [isTyping, setIsTyping] = useState(false)
 const [messages, setMessages] = useState([])
+const [videoAndPhoneIconVisible, setVideoAndPhoneIconVisible] =  useState(false)
 
 //   useEffect(() => {
 //     fetch("http://localhost:3100/getAllData", {
@@ -38,11 +39,19 @@ let isRoomCreated = false;
   }, [messages, roomId])
   socket.on("privateMessage", ({message})=>{
     setMessages([...messages, message])
-
 })
+
+const toggleVideoAndPhoneIcon =(e)=>{
+  setVideoAndPhoneIconVisible(!videoAndPhoneIconVisible)
+}
 
 const setTyping = function(){
   socket.emit("typing", props.currentChatRecvr)
+}
+
+const backToChats =()=>{
+  props.setHeaderAndChatContactsVisibility(true)
+  props.setChatContVisible(false)
 }
 
 socket.on("typing", (chatHead)=>{
@@ -127,6 +136,11 @@ socket.on("typing", (chatHead)=>{
   return (
     <section className="chatCont">
       <div className="chatInfoPanel">
+
+      <span className="chatPanelPhoneIcon" onClick={backToChats}>
+            <ArrowBendUpLeft size={20} />
+          </span>
+
         <span>
           <div className="chatPartnerInfo">
             <div ref={chatRecipient}>{props.currentChatRecvr}</div>
@@ -143,7 +157,7 @@ socket.on("typing", (chatHead)=>{
           </div>
         </span>
 
-        <span className="chatPanelIconsCont">
+        {props.clientWidth > 750 && <span className="chatPanelIconsCont">
           <span className="chatPanelVideoIcon">
             <VideoCamera size={20} />
           </span>
@@ -151,7 +165,23 @@ socket.on("typing", (chatHead)=>{
           <span className="chatPanelPhoneIcon">
             <Phone size={20} />
           </span>
-        </span>
+        </span>}
+
+        {props.clientWidth <= 750 && <div className="chatPanelIconsContMobileAndTabs">
+          <span className="chatPanelVideoIcon" onClick={toggleVideoAndPhoneIcon}>
+            <DotsThreeVertical size={20} />
+          </span>
+
+          {videoAndPhoneIconVisible && <span className="chatPanelVideoIcon">
+            <VideoCamera size={20} />
+          </span>}
+
+          {videoAndPhoneIconVisible && <span className="chatPanelPhoneIcon">
+            <Phone size={20} />
+          </span>}
+        </div>}
+
+
       </div>
 
       <div className="chatCanvas" ref={chatCanvasRef}>
