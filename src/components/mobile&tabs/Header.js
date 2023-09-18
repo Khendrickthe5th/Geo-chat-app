@@ -1,6 +1,7 @@
 import "./Header.css"
-import React, { useRef } from "react"
+import { useRef } from "react"
 import { DotsThreeVertical, MagnifyingGlass, CaretRight} from "@phosphor-icons/react"
+import { Link } from "react-router-dom"
 
 function Header(){
     const sideMenuRef = useRef()
@@ -8,10 +9,8 @@ function Header(){
     const toggleOpts = ()=>{
         sideMenuRef.current.style.display = "block";
         sideMenuRef.current.focus()
-        sideMenuRef.current.addEventListener("blur", ()=>{
-            sideMenuRef.current.style.display = "none";
-        })
         }
+        const runEventListener = ()=> sideMenuRef.current.style.display = "none";
 
     return(
         <div className="HeaderCont">
@@ -24,10 +23,10 @@ function Header(){
                 </div>
 
                 <div className="sideMenu" ref={sideMenuRef} tabIndex="5">
-                    <ul>Profile <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
-                    <ul>Status <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
-                    <ul>Settings <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
-                    <ul>Log out<CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
+                    <ul onClick={runEventListener}>Profile <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
+                    <ul onClick={runEventListener}>Status <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
+                    <ul onClick={runEventListener} >Settings <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
+                    <Link to="/" className="zzk" onClick={runEventListener}>Log out<CaretRight className="carertIcon" size={18} fill={"#fff"} /></Link>
                 </div>
 
             </div>

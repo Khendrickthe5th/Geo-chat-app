@@ -108,9 +108,6 @@
 }
 
 @media screen and (max-width: 1071px){
-    .chat{
-        width: 250px;
-    }
 
     .searchBoxCont > span{
         width: 200px;
@@ -121,5 +118,53 @@
         border: none;
         margin-left: 5px;
         width: 160px;
+    }
+}
+@media screen and (max-width: 750px){
+    .searchBoxCont{
+        display: none;
+    }
+    .chat{
+        width: auto;
+    }
+    .textPeek > p {
+        margin: 0px;
+        height: auto;
+        width: 420px;
+        white-space: nowrap;
+        padding: 0px;
+        font-size: 0.9rem;
+    }
+}
+@media screen and (max-width: 500px){
+    .textPeek > p {
+        margin: 0px;
+        height: auto;
+        width: 320px;
+        white-space: nowrap;
+        padding: 0px;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .textPeek > p {
+        margin: 0px;
+        height: auto;
+        width: 220px;
+        white-space: nowrap;
+        padding: 0px;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 300px){
+    .textPeek > p {
+        margin: 0px;
+        height: auto;
+        width: 170px;
+        white-space: nowrap;
+        padding: 0px;
+        font-size: 0.9rem;
     }
 }
