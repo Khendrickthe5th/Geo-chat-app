@@ -9,12 +9,19 @@ const socket = socketIO.connect("http://localhost:3100")
 function ChatContacts(props){
     const allConvo = useRef()
     const chatHeadName = useRef()
+    const oopsSuchEmpty =useRef()
     const [clientWidth, setClientWidth] = useState(window.innerWidth)
 
     useEffect(()=>{
     window.onresize = ()=>{
         setClientWidth(window.innerWidth)
     }
+    if(oopsSuchEmpty.current.nextElementSibling == null){
+        oopsSuchEmpty.current.style.display = "block"
+    }else{
+        oopsSuchEmpty.current.style.display = "none"
+    }
+    // console.log(oopsSuchEmpty.current.nextElementSibling)
     })
 
 
@@ -40,6 +47,8 @@ function ChatContacts(props){
                 </div>
 
             <div className="chat" ref={allConvo}>
+                <h1 ref={oopsSuchEmpty}>We are the world</h1>
+
             {props.onlineUsers && Object.entries(props.onlineUsers).map((item, index)=>{
                 return( item[0] !== props.username ? <div key={index} className="convoHeaderCont" onClick={addClickEvent}>
             <div className="convoHeader">
@@ -57,7 +66,7 @@ function ChatContacts(props){
                     </div>
                 </div>
             </div>
-            </div> : <div key={index}></div>)
+            </div> : <></>)
             })}
 
             </div>

@@ -3,8 +3,11 @@ import ChatCont from "../ChatCont"
 import { useRef } from "react"
 import { DotsThreeVertical, MagnifyingGlass, CaretRight} from "@phosphor-icons/react"
 import { Link } from "react-router-dom"
+import socketIO from "socket.io-client"
+// const socket = socketIO.connect("https://geo-chat-app-be.onrender.com")
+const socket = socketIO.connect("http://localhost:3100")
 
-function Header(){
+function Header(props){
     const sideMenuRef = useRef()
     
     const toggleOpts = ()=>{
@@ -12,6 +15,11 @@ function Header(){
         sideMenuRef.current.focus()
         }
         const runEventListener = ()=> sideMenuRef.current.style.display = "none";
+
+        const disconnect = ()=>{
+            sideMenuRef.current.style.display = "none"
+            socket.emit("leaving", props.username)
+        }
 
     return(
         <div className="HeaderCont">
@@ -27,7 +35,7 @@ function Header(){
                     <ul onClick={runEventListener}>Profile <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
                     <ul onClick={runEventListener}>Status <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
                     <ul onClick={runEventListener} >Settings <CaretRight className="carertIcon" size={18} fill={"#fff"} /></ul>
-                    <Link to="/" className="zzk" onClick={runEventListener}>Log out<CaretRight className="carertIcon" size={18} fill={"#fff"} /></Link>
+                    <Link to="/" className="zzk" onClick={disconnect}>Log out<CaretRight className="carertIcon" size={18} fill={"#fff"} /></Link>
                 </div>
 
             </div>

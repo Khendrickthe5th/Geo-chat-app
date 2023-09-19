@@ -11,6 +11,7 @@ const [ChatContactsVisible, setChatContactsVisible] = useState(true)
 const [initiateChat, setInitiateChat] = useState(false)
 const [currentChatRecvr, setCurrentChatRecvr] = useState()
 const [onlineUsers, setOnlineUsers] = useState()
+const [messages, setMessages] = useState([])
 const [clientWidth, setClientWidth] = useState(window.innerWidth)
 const [HeaderAndChatContactsVisibility, setHeaderAndChatContactsVisibility] = useState(true)
 const [chatContVisible, setChatContVisible] = useState(false)
@@ -24,7 +25,7 @@ useEffect(()=>{
 
 
 socket.on("userListRen", (userList)=>{
-  console.log("received event from ChatCont to render users")
+  console.log("received event from ChatCont to render users", userList)
       setOnlineUsers(userList)
 })
 
@@ -36,17 +37,17 @@ const toggleChatContactsVisible = ()=>{
     <section className="App">
       { clientWidth > 750 ? 
       (<>
-      <NavBar toggleChatContactsVisible={toggleChatContactsVisible} />
+      <NavBar toggleChatContactsVisible={toggleChatContactsVisible} username={props.username}/>
       { ChatContactsVisible && <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} />}
-      {initiateChat && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} clientWidth={clientWidth} />}
+      {initiateChat && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} clientWidth={clientWidth} messages={messages} setMessages={setMessages} />}
       </>)
        : <></> }
 
        {clientWidth <= 750 ? 
        (<div className="MobileView">
-       {HeaderAndChatContactsVisibility && <Header />}
+       {HeaderAndChatContactsVisibility && <Header username={props.username} style={{ "display": "none", }} />}
        {HeaderAndChatContactsVisibility && <ChatContacts setCurrentChatRecvr={setCurrentChatRecvr} username={props.username} setInitiateChat={setInitiateChat} onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setHeaderAndChatContactsVisibility={setHeaderAndChatContactsVisibility} chatContVisible={chatContVisible} setChatContVisible={setChatContVisible} />}
-       {chatContVisible && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} clientWidth={clientWidth} setHeaderAndChatContactsVisibility={setHeaderAndChatContactsVisibility} setChatContVisible={setChatContVisible} />}
+       {chatContVisible && < ChatCont username={props.username} currentChatRecvr={currentChatRecvr} clientWidth={clientWidth} setHeaderAndChatContactsVisibility={setHeaderAndChatContactsVisibility} setChatContVisible={setChatContVisible}  messages={messages} setMessages={setMessages} />}
        </div>) : <></>}
        
     </section>

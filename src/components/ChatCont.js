@@ -13,7 +13,7 @@ const inputFieldVal = useRef()
 const chatRecipient = useRef()
 const [EmojiPadVisible, setEmojiPadVisible] = useState(false)
 const [isTyping, setIsTyping] = useState(false)
-const [messages, setMessages] = useState([])
+// const [props.messages, props.setMessages] = useState([])
 const [videoAndPhoneIconVisible, setVideoAndPhoneIconVisible] =  useState(false)
 
 //   useEffect(() => {
@@ -29,16 +29,18 @@ let roomId = props.username
 let isRoomCreated = false;
 
   useEffect(()=>{
-    console.log(messages)
+    console.log(props.messages)
     if(!isRoomCreated){
       socket.emit("createRoom", roomId)
       isRoomCreated = true;
       console.log(roomId, "Created!", isRoomCreated)
     }
     chatCanvasRef.current.scrollBy(0, chatCanvasRef.current.scrollHeight)
-  }, [messages, roomId])
+  }, [props.messages, roomId])
+
   socket.on("privateMessage", ({message})=>{
-    setMessages([...messages, message])
+    props.setMessages([...props.messages, message])
+    console.log([...props.messages, message], "is this not iterable?")
 })
 
 const toggleVideoAndPhoneIcon =(e)=>{
@@ -70,7 +72,7 @@ socket.on("typing", (chatHead)=>{
         "timeStamp": formatAMPM(new Date),
       })
       
-      setMessages([...messages, {
+      props.setMessages([...props.messages, {
         "message": inputFieldVal.current.value,
         "sender": props.username,
         "receiver": props.currentChatRecvr,
@@ -78,7 +80,7 @@ socket.on("typing", (chatHead)=>{
       }])
         inputFieldVal.current.value = ""
         inputFieldVal.current.focus()
-        console.log(messages)
+        console.log(props.messages)
         
     }
     catch(error){
@@ -96,7 +98,7 @@ socket.on("typing", (chatHead)=>{
         "timeStamp": formatAMPM(new Date),
       })
       
-      setMessages([...messages, {
+      props.setMessages([...props.messages, {
         "message": inputFieldVal.current.value,
         "sender": props.username,
         "receiver": props.currentChatRecvr,
@@ -104,7 +106,7 @@ socket.on("typing", (chatHead)=>{
       }])
         inputFieldVal.current.value = ""
         inputFieldVal.current.focus()
-        console.log(messages)
+        console.log(props.messages)
         
     }
     catch(error){
@@ -186,7 +188,7 @@ socket.on("typing", (chatHead)=>{
 
       <div className="chatCanvas" ref={chatCanvasRef}>
 
-        {messages && messages.map((item, index)=>{
+        {props.messages && props.messages.map((item, index)=>{
 
           return (item.receiver === props.currentChatRecvr || item.sender === props.currentChatRecvr ? <div key={index} className={item.sender !== props.username ? "chat-appreceiver" : "chat-appsender"}>
           <p className="mesageVal">{item.message}</p>
